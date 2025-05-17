@@ -1,3 +1,100 @@
+# 🪦 TheEnd.page
+
+**Une fin. Un style. Un lien.**
+
+---
+
+## 🚀 Concept
+
+**TheEnd.page** est une plateforme web où chacun·e peut créer sa **page de départ personnalisée**.
+
+Tu quittes un taf, une équipe, un projet, une relation ou un serveur Discord ?
+Tu veux partir avec panache, rage, humour ou émotion ?
+**TheEnd.page**, c’est ton dernier mot. Avant de claquer la porte.
+
+Une page unique, cliquable, partageable, inoubliable.
+
+---
+
+## 🎯 Objectif
+
+Permettre à tout utilisateur de :
+
+1. **Choisir son ton** de départ (dramatique, ironique, touchant, classe, ultra cringe, absurde, passif-agressif, honnête…)
+2. **Personnaliser sa page** avec :
+   - Un texte libre
+   - Des gifs, images, sons
+   - Des éléments de style (polices, couleurs, animations, etc.)
+3. **Générer un lien unique**
+4. **Partager sa page** sur les réseaux ou en message privé
+
+---
+
+## 🧱 Fonctionnalités principales
+
+- 🧠 **Choix de ton prédéfini** (influence visuelle + ambiance sonore)
+- 🎨 **Éditeur de contenu simple & fun** (texte, médias, mise en forme)
+- 📸 **Ajout de gifs / images / sons**
+- 🛠️ **Templates de pages thématiques**
+- 🔗 **Lien de page généré automatiquement**
+- 📱 **Partage facile (réseaux, QR code, lien direct)**
+
+---
+
+## 🖌️ Exemples d’usages
+
+- ✌️ Démission d’un job
+- 💔 Fin de couple
+- 🪓 Projet annulé
+- 😅 Rage quit de Discord
+- 🎭 Dernier message à un groupe
+
+---
+
+## 💻 Stack technique
+
+- **Frontend** : React JS
+- **Backend** : Node.js + Express
+- **Base de données** : MySQL2
+
+---
+
+## ⏱ Deadline
+
+**⏳ 24h pour produire un MVP cliquable.**
+Focus : **impact visuel + expérience utilisateur + lien fonctionnel**.
+
+---
+
+## 🔥 Ton & direction artistique
+
+- 💥 Audacieux, libre, sans censure
+- 😂 Place au drama, au fun, au cringe ou au malaise
+- 📱 Pensé pour être partagé et consulté en mobile
+
+---
+
+## 🧩 Équipe & rôles
+
+| Rôle                | Nom              |
+|---------------------|------------------|
+| Développeur         | Julien K/BIDI    |
+| Développeur         | Mathis COUTAYE   |
+| Développeur         | Maël MANGATA     |
+| Développeur         | Raphaël HOARAU   |
+
+---
+
+## 📣 En résumé
+
+> **TheEnd.page**, c’est ton moment de gloire. Ou de chaos.
+> Ton départ, à ton image. Et un lien qui reste.
+
+---
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
