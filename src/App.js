@@ -38,7 +38,7 @@ function App() {
   };
 
   const getToneStyles = () => {
-    switch(tone) {
+    switch (tone) {
       case 'dramatique':
         return { fontFamily: 'Georgia, serif', textShadow: '0 0 10px rgba(255,0,0,0.7)' };
       case 'ironique':
@@ -71,83 +71,61 @@ function App() {
         {!isPublished ? (
           <div className="creator">
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Votre nom</label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Qui part ?"
-                  required
-                />
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setName(e.target.value)}></input>
+                  <label class="user-label">Votre Nom</label>
               </div>
-
-              <div className="form-group">
-                <label>Titre de votre page</label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  placeholder="Pourquoi je m'en vais..."
-                  required
-                />
+              <br></br>
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setTitle(e.target.value)}></input>
+                  <label class="user-label">Titre de votre page</label>
               </div>
-
-              <div className="form-group">
-                <label>Ton de votre message</label>
-                <select value={tone} onChange={(e) => setTone(e.target.value)}>
-                  {tones.map((t) => (
-                    <option key={t.value} value={t.value}>{t.label}</option>
-                  ))}
-                </select>
+              <br></br>
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setTone(e.target.value)}></input>
+                  <label class="user-label">Ton de votre message</label>
               </div>
-
-              <div className="form-group">
-                <label>Votre message</label>
-                <textarea 
-                  value={message} 
-                  onChange={(e) => setMessage(e.target.value)} 
-                  placeholder="Dites tout ce que vous n'avez jamais osé dire..." 
-                  rows="6" 
-                  required 
-                />
+              <br></br>
+              <div class="input-group">
+                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setMessage(e.target.value)}></input>
+                  <label class="user-label">Votre message</label>
               </div>
-
+              <br></br>
               <div className="form-group">
                 <label>Couleur de fond</label>
-                <input 
-                  type="color" 
-                  value={bgColor} 
-                  onChange={(e) => setBgColor(e.target.value)} 
+                <input
+                  type="color"
+                  value={bgColor}
+                  onChange={(e) => setBgColor(e.target.value)}
                 />
               </div>
 
               <div className="form-group">
                 <label>Couleur du texte</label>
-                <input 
-                  type="color" 
-                  value={textColor} 
-                  onChange={(e) => setTextColor(e.target.value)} 
+                <input
+                  type="color"
+                  value={textColor}
+                  onChange={(e) => setTextColor(e.target.value)}
                 />
               </div>
 
               <div className="form-group">
                 <label>GIF (URL)</label>
-                <input 
-                  type="url" 
-                  value={gifUrl} 
-                  onChange={(e) => setGifUrl(e.target.value)} 
-                  placeholder="https://example.com/your-gif.gif" 
+                <input
+                  type="url"
+                  value={gifUrl}
+                  onChange={(e) => setGifUrl(e.target.value)}
+                  placeholder="https://example.com/your-gif.gif"
                 />
               </div>
 
               <div className="form-group">
                 <label>Son (URL)</label>
-                <input 
-                  type="url" 
-                  value={soundUrl} 
-                  onChange={(e) => setSoundUrl(e.target.value)} 
-                  placeholder="https://example.com/your-sound.mp3" 
+                <input
+                  type="url"
+                  value={soundUrl}
+                  onChange={(e) => setSoundUrl(e.target.value)}
+                  placeholder="https://example.com/your-sound.mp3"
                 />
               </div>
 
@@ -156,10 +134,10 @@ function App() {
 
             <div className="preview">
               <h3>Aperçu</h3>
-              <div 
-                className="page-preview" 
-                style={{ 
-                  backgroundColor: bgColor, 
+              <div
+                className="page-preview"
+                style={{
+                  backgroundColor: bgColor,
                   color: textColor,
                   ...getToneStyles()
                 }}
@@ -183,10 +161,10 @@ function App() {
         ) : (
           <div className="published">
             <h2>Votre page est prête !</h2>
-            <div 
-              className="final-page" 
-              style={{ 
-                backgroundColor: bgColor, 
+            <div
+              className="final-page"
+              style={{
+                backgroundColor: bgColor,
                 color: textColor,
                 ...getToneStyles()
               }}
