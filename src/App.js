@@ -12,6 +12,7 @@ function App() {
   const [soundUrl, setSoundUrl] = useState('');
   const [isPublished, setIsPublished] = useState(false);
   const [pageUrl, setPageUrl] = useState('');
+  const [errors, setErrors] = useState({});
 
   const tones = [
     { value: 'dramatique', label: 'Dramatique' },
@@ -26,15 +27,35 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Générer une URL unique (simulée ici)
+    const newErrors = {};
+
+    if (!name.trim()) newErrors.name = 'Ce champ est requis';
+    if (!title.trim()) newErrors.title = 'Ce champ est requis';
+    if (!message.trim()) newErrors.message = 'Ce champ est requis';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
     const uniqueId = Math.random().toString(36).substring(2, 9);
     setPageUrl(`https://theend.page/${uniqueId}`);
     setIsPublished(true);
   };
 
   const resetForm = () => {
+    setName('');
+    setTitle('');
+    setMessage('');
+    setTone('dramatique');
+    setBgColor('#000000');
+    setTextColor('#ffffff');
+    setGifUrl('');
+    setSoundUrl('');
     setIsPublished(false);
     setPageUrl('');
+    setErrors({});
   };
 
   const getToneStyles = () => {
@@ -71,21 +92,44 @@ function App() {
         {!isPublished ? (
           <div className="creator">
             <form onSubmit={handleSubmit}>
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setName(e.target.value)}></input>
-                  <label class="user-label">Votre Nom</label>
+              <div className="input-group">
+                <input
+                  type="text"
+                  autoComplete="off"
+                  className={`input ${errors.name ? 'error' : ''}`}
+                  onChange={(e) => setName(e.target.value)}
+                  value={name}
+                />
+                <label className="user-label">Votre Nom</label>
+                {errors.name && <span className="error-text">{errors.name}</span>}
               </div>
-              <br></br>
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setTitle(e.target.value)}></input>
-                  <label class="user-label">Titre de votre page</label>
+              <br />
+
+              <div className="input-group">
+                <input
+                  type="text"
+                  autoComplete="off"
+                  className={`input ${errors.title ? 'error' : ''}`}
+                  onChange={(e) => setTitle(e.target.value)}
+                  value={title}
+                />
+                <label className="user-label">Titre de votre page</label>
+                {errors.title && <span className="error-text">{errors.title}</span>}
               </div>
-              <br></br>
-              <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setMessage(e.target.value)}></input>
-                  <label class="user-label">Votre message</label>
+              <br />
+
+              <div className="input-group">
+                <input
+                  type="text"
+                  autoComplete="off"
+                  className={`input ${errors.message ? 'error' : ''}`}
+                  onChange={(e) => setMessage(e.target.value)}
+                  value={message}
+                />
+                <label className="user-label">Votre message</label>
+                {errors.message && <span className="error-text">{errors.message}</span>}
               </div>
-              <br></br>
+              <br />
 
               <div className="form-group">
                 <label>Ton de votre message</label>
