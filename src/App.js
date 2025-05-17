@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './style/App.css';
 
 function App() {
   const [name, setName] = useState('');
@@ -107,6 +107,15 @@ function App() {
                   value={textColor}
                   onChange={(e) => setTextColor(e.target.value)}
                 />
+              </div>
+
+              <div className="form-group">
+                <label>Ton de votre message</label>
+                <select value={tone} onChange={(e) => setTone(e.target.value)}>
+                  {tones.map((t) => (
+                    <option key={t.value} value={t.value}>{t.label}</option>
+                  ))}
+                </select>
               </div>
 
               <div className="form-group">
