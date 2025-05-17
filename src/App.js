@@ -136,9 +136,14 @@ function App() {
 
   return (
     <div className="app">
-      <header>
-        <h1>TheEnd.page</h1>
-        <p>Créez votre page de départ inoubliable</p>
+      <header className="app-header">
+        <div className="header-left">
+          <img src="./favicon.ico" alt="Logo TheEnd.page" className="logo-image" />
+          <h2 className="logo-text">TheEnd.page</h2>
+        </div>
+        <div className="header-right">
+          <p className="header-tagline">Créez votre page de départ inoubliable</p>
+        </div>
       </header>
 
       <main>
@@ -187,33 +192,48 @@ function App() {
               </div>
               <br />
 
-              <div className="form-group">
-                <label>Ton de votre message</label>
-                <select value={tone} onChange={(e) => setTone(e.target.value)}>
+              <div className="input-group">
+                <select class="select-input" value={tone} onChange={(e) => setTone(e.target.value)}>
                   {tones.map((t) => (
                     <option key={t.value} value={t.value}>{t.label}</option>
                   ))}
                 </select>
+                <label class="user-label">Ton de votre message</label>
               </div>
               <br />
 
-              <div className="form-group">
-                <label>Couleur de fond</label>
-                <input
-                  type="color"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                />
-              </div>
-              <br />
+              <div className="color-options">
+                <div className="input-group">
+                  <div className="color-wrapper">
+                    <div
+                      className="color-preview half-bg"
+                      style={{ backgroundColor: bgColor }}
+                    />
+                    <input
+                      type="color"
+                      value={bgColor}
+                      onChange={(e) => setBgColor(e.target.value)}
+                      className="hidden-color"
+                    />
+                    <label className="user-label">Couleur de fond</label>
+                  </div>
+                </div>
 
-              <div className="form-group">
-                <label>Couleur du texte</label>
-                <input
-                  type="color"
-                  value={textColor}
-                  onChange={(e) => setTextColor(e.target.value)}
-                />
+                <div className="input-group">
+                  <div className="color-wrapper">
+                    <div
+                      className="color-preview half-bg"
+                      style={{ backgroundColor: textColor }}
+                    />
+                    <input
+                      type="color"
+                      value={textColor}
+                      onChange={(e) => setTextColor(e.target.value)}
+                      className="hidden-color"
+                    />
+                    <label className="user-label">Couleur du texte</label>
+                  </div>
+                </div>
               </div>
               <br />
 
