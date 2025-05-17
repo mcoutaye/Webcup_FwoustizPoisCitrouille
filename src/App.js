@@ -96,32 +96,43 @@ function App() {
     }
   };
 
+  const getBackgroundStyle = () => ({
+    backgroundColor: bgColor,
+    color: textColor,
+    fontFamily: getToneStyles().fontFamily,
+    ...getToneStyles(),
+    minHeight: '100vh',
+    padding: '20px',
+    position: 'relative',
+    overflow: 'hidden',
+    pointerEvents: 'none',
+  });
+
   const downloadPDF = () => {
     const page = document.querySelector('.final-page');
     if (!page) return;
 
-    html2canvas(page, {
-      useCORS: true,
-      scale: 2,
-    }).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'px',
-        format: [canvas.width, canvas.height],
-      });
-      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-      pdf.save('theend_page.pdf');
-    });
-  };
+    setTimeout(() => {
+      const pageWidth = page.scrollWidth;
+      const pageHeight = page.scrollHeight;
 
-  const getBackgroundStyle = () => ({
-    backgroundColor: bgColor,
-    color: textColor,
-    position: 'relative',
-    overflow: 'hidden',
-    ...getToneStyles(),
-  });
+      html2canvas(page, {
+        useCORS: true,
+        scale: 2,
+        windowWidth: pageWidth,
+        windowHeight: pageHeight,
+      }).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'px',
+          format: [canvas.width, canvas.height],
+        });
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+        pdf.save('theend_page.pdf');
+      });
+    }, 100);
+  };
 
   return (
     <div className="app">
