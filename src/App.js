@@ -124,6 +124,7 @@ function App() {
                   className={`input ${errors.name ? 'error' : ''}`}
                   onChange={(e) => setName(e.target.value)}
                   value={name}
+                  placeholder='Nom Prénom'
                 />
                 <label className="user-label">Votre Nom</label>
                 {errors.name && <span className="error-text">{errors.name}</span>}
@@ -137,6 +138,7 @@ function App() {
                   className={`input ${errors.title ? 'error' : ''}`}
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
+                  placeholder="Pourquoi je m'en vais..."
                 />
                 <label className="user-label">Titre de votre page</label>
                 {errors.title && <span className="error-text">{errors.title}</span>}
@@ -150,6 +152,7 @@ function App() {
                   className={`input ${errors.message ? 'error' : ''}`}
                   onChange={(e) => setMessage(e.target.value)}
                   value={message}
+                  placeholder="Racontez tout..."
                 />
                 <label className="user-label">Votre message</label>
                 {errors.message && <span className="error-text">{errors.message}</span>}
