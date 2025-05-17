@@ -8,7 +8,7 @@ function App() {
   const [tone, setTone] = useState('dramatique');
   const [bgColor, setBgColor] = useState('#000000');
   const [textColor, setTextColor] = useState('#ffffff');
-  const [gifUrl, setGifUrl] = useState('');
+  const [gifUrls, setGifUrls] = useState(['']);
   const [soundUrl, setSoundUrl] = useState('');
   const [isPublished, setIsPublished] = useState(false);
   const [pageUrl, setPageUrl] = useState('');
@@ -28,7 +28,6 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
-
     if (!name.trim()) newErrors.name = 'Ce champ est requis';
     if (!title.trim()) newErrors.title = 'Ce champ est requis';
     if (!message.trim()) newErrors.message = 'Ce champ est requis';
@@ -51,11 +50,26 @@ function App() {
     setTone('dramatique');
     setBgColor('#000000');
     setTextColor('#ffffff');
-    setGifUrl('');
+    setGifUrls(['']);
     setSoundUrl('');
     setIsPublished(false);
     setPageUrl('');
     setErrors({});
+  };
+
+  const handleGifChange = (index, value) => {
+    const newGifs = [...gifUrls];
+    newGifs[index] = value;
+    setGifUrls(newGifs);
+  };
+
+  const addGifField = () => {
+    setGifUrls([...gifUrls, '']);
+  };
+
+  const removeGifField = (index) => {
+    const newGifs = gifUrls.filter((_, i) => i !== index);
+    setGifUrls(newGifs);
   };
 
   const getToneStyles = () => {
@@ -159,13 +173,22 @@ function App() {
               </div>
 
               <div className="form-group">
-                <label>GIF (URL)</label>
-                <input
-                  type="url"
-                  value={gifUrl}
-                  onChange={(e) => setGifUrl(e.target.value)}
-                  placeholder="https://example.com/your-gif.gif"
-                />
+                <label>GIF(s) (URL)</label>
+                {gifUrls.map((url, index) => (
+                  <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+                    <input
+                      type="url"
+                      value={url}
+                      onChange={(e) => handleGifChange(index, e.target.value)}
+                      placeholder={`GIF #${index + 1} https://example.com/your-gif.gif`}
+                      style={{ flex: 1, marginRight: '8px' }}
+                    />
+                    {gifUrls.length > 1 && (
+                      <button type="button" onClick={() => removeGifField(index)}>✕</button>
+                    )}
+                  </div>
+                ))}
+                <button type="button" onClick={addGifField}>Ajouter un GIF</button>
               </div>
 
               <div className="form-group">
@@ -196,7 +219,9 @@ function App() {
                 <div className="message">
                   {message || "(Votre message apparaîtra ici)"}
                 </div>
-                {gifUrl && <img src={gifUrl} alt="GIF d'humeur" className="gif-preview" />}
+                {gifUrls.map((url, i) => (
+                  url && <img key={i} src={url} alt={`GIF ${i + 1}`} className="gif-preview" />
+                ))}
                 {soundUrl && (
                   <div className="sound-preview">
                     <audio controls src={soundUrl}>
@@ -221,7 +246,9 @@ function App() {
               <h2>{title}</h2>
               <p>Par {name}</p>
               <div className="message">{message}</div>
-              {gifUrl && <img src={gifUrl} alt="GIF d'humeur" />}
+              {gifUrls.map((url, i) => (
+                url && <img key={i} src={url} alt={`GIF ${i + 1}`} />
+              ))}
               {soundUrl && (
                 <audio controls src={soundUrl}>
                   Votre navigateur ne supporte pas l'élément audio.
