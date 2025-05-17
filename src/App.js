@@ -82,15 +82,20 @@ function App() {
               </div>
               <br></br>
               <div class="input-group">
-                <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setTone(e.target.value)}></input>
-                  <label class="user-label">Ton de votre message</label>
-              </div>
-              <br></br>
-              <div class="input-group">
                 <input required="" type="text" name="text" autocomplete="off" class="input" onChange={(e) => setMessage(e.target.value)}></input>
                   <label class="user-label">Votre message</label>
               </div>
               <br></br>
+
+              <div className="form-group">
+                <label>Ton de votre message</label>
+                <select value={tone} onChange={(e) => setTone(e.target.value)}>
+                  {tones.map((t) => (
+                    <option key={t.value} value={t.value}>{t.label}</option>
+                  ))}
+                </select>
+              </div>
+
               <div className="form-group">
                 <label>Couleur de fond</label>
                 <input
@@ -107,15 +112,6 @@ function App() {
                   value={textColor}
                   onChange={(e) => setTextColor(e.target.value)}
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Ton de votre message</label>
-                <select value={tone} onChange={(e) => setTone(e.target.value)}>
-                  {tones.map((t) => (
-                    <option key={t.value} value={t.value}>{t.label}</option>
-                  ))}
-                </select>
               </div>
 
               <div className="form-group">
