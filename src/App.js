@@ -10,9 +10,11 @@ function App() {
   const [textColor, setTextColor] = useState('#ffffff');
   const [gifUrls, setGifUrls] = useState(['']);
   const [soundUrl, setSoundUrl] = useState('');
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [isPublished, setIsPublished] = useState(false);
   const [pageUrl, setPageUrl] = useState('');
   const [errors, setErrors] = useState({});
+  const [blurAmount, setBlurAmount] = useState(5);
 
   const tones = [
     { value: 'dramatique', label: 'Dramatique' },
@@ -52,6 +54,7 @@ function App() {
     setTextColor('#ffffff');
     setGifUrls(['']);
     setSoundUrl('');
+    setBackgroundImageUrl('');
     setIsPublished(false);
     setPageUrl('');
     setErrors({});
@@ -94,6 +97,14 @@ function App() {
         return {};
     }
   };
+
+  const getBackgroundStyle = () => ({
+    backgroundColor: bgColor,
+    color: textColor,
+    position: 'relative',
+    overflow: 'hidden',
+    ...getToneStyles(),
+  });
 
   return (
     <div className="app">
@@ -173,6 +184,29 @@ function App() {
               </div>
 
               <div className="form-group">
+                <label>Image de fond (URL)</label>
+                <input
+                  type="url"
+                  value={backgroundImageUrl}
+                  onChange={(e) => setBackgroundImageUrl(e.target.value)}
+                  placeholder="https://example.com/your-background.jpg"
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Flou du fond (en px)</label>
+                <input
+                  type="range"
+                  min="0"
+                  max="30"
+                  step="1"
+                  value={blurAmount}
+                  onChange={(e) => setBlurAmount(parseInt(e.target.value))}
+                />
+                <span>{blurAmount}px</span>
+              </div>
+
+              <div className="form-group">
                 <label>GIF(s) (URL)</label>
                 {gifUrls.map((url, index) => (
                   <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
@@ -180,7 +214,7 @@ function App() {
                       type="url"
                       value={url}
                       onChange={(e) => handleGifChange(index, e.target.value)}
-                      placeholder={`GIF #${index + 1} https://example.com/your-gif.gif`}
+                      placeholder={`GIF #${index + 1}`}
                       style={{ flex: 1, marginRight: '8px' }}
                     />
                     {gifUrls.length > 1 && (
@@ -206,43 +240,47 @@ function App() {
 
             <div className="preview">
               <h3>Aperçu</h3>
-              <div
-                className="page-preview"
-                style={{
-                  backgroundColor: bgColor,
-                  color: textColor,
-                  ...getToneStyles()
-                }}
-              >
-                <h2>{title || "(Titre de votre page)"}</h2>
-                <p>Par {name || "(Votre nom)"}</p>
-                <div className="message">
-                  {message || "(Votre message apparaîtra ici)"}
-                </div>
-                {gifUrls.map((url, i) => (
-                  url && <img key={i} src={url} alt={`GIF ${i + 1}`} className="gif-preview" />
-                ))}
-                {soundUrl && (
-                  <div className="sound-preview">
-                    <audio controls src={soundUrl}>
-                      Votre navigateur ne supporte pas l'élément audio.
-                    </audio>
-                  </div>
+              <div className="page-preview" style={getBackgroundStyle()}>
+                {backgroundImageUrl && (
+                  <div
+                    className="background-blur"
+                    style={{
+                      backgroundImage: `url(${backgroundImageUrl})`,
+                      filter: `blur(${blurAmount}px)`,
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      zIndex: 0,
+                    }}
+                  />
                 )}
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  <h2>{title || "(Titre de votre page)"}</h2>
+                  <p>Par {name || "(Votre nom)"}</p>
+                  <div className="message">{message || "(Votre message apparaîtra ici)"}</div>
+                  {gifUrls.map((url, i) =>
+                    url ? <img key={i} src={url} alt={`GIF ${i + 1}`} className="gif-preview" /> : null
+                  )}
+                  {soundUrl && (
+                    <div className="sound-preview">
+                      <audio controls src={soundUrl}>
+                        Votre navigateur ne supporte pas l'élément audio.
+                      </audio>
+                    </div>
+                  )}
+                </div>
               </div>
+
             </div>
           </div>
         ) : (
           <div className="published">
             <h2>Votre page est prête !</h2>
-            <div
-              className="final-page"
-              style={{
-                backgroundColor: bgColor,
-                color: textColor,
-                ...getToneStyles()
-              }}
-            >
+            <div className="final-page" style={getBackgroundStyle()}>
               <h2>{title}</h2>
               <p>Par {name}</p>
               <div className="message">{message}</div>
@@ -258,9 +296,7 @@ function App() {
             <div className="share-section">
               <p>Partagez votre page :</p>
               <input type="text" value={pageUrl} readOnly />
-              <button onClick={() => navigator.clipboard.writeText(pageUrl)}>
-                Copier le lien
-              </button>
+              <button onClick={() => navigator.clipboard.writeText(pageUrl)}>Copier le lien</button>
               <button onClick={resetForm}>Créer une autre page</button>
             </div>
           </div>
