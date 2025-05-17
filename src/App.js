@@ -164,6 +164,7 @@ function App() {
                   ))}
                 </select>
               </div>
+              <br />
 
               <div className="form-group">
                 <label>Couleur de fond</label>
@@ -173,6 +174,7 @@ function App() {
                   onChange={(e) => setBgColor(e.target.value)}
                 />
               </div>
+              <br />
 
               <div className="form-group">
                 <label>Couleur du texte</label>
@@ -182,16 +184,19 @@ function App() {
                   onChange={(e) => setTextColor(e.target.value)}
                 />
               </div>
+              <br />
 
-              <div className="form-group">
-                <label>Image de fond (URL)</label>
+              <div className="input-group">
                 <input
                   type="url"
                   value={backgroundImageUrl}
                   onChange={(e) => setBackgroundImageUrl(e.target.value)}
                   placeholder="https://example.com/your-background.jpg"
+                  className={`input ${errors.message ? 'error' : ''}`}
                 />
+                <label className="user-label">Image de fond</label>
               </div>
+              <br />
 
               <div className="form-group">
                 <label>Flou du fond (en px)</label>
@@ -205,36 +210,38 @@ function App() {
                 />
                 <span>{blurAmount}px</span>
               </div>
-
-              <div className="form-group">
-                <label>GIF(s) (URL)</label>
+              <br />
+              <div className="input-group">
                 {gifUrls.map((url, index) => (
-                  <div key={index} style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+                  <div key={index} >
                     <input
                       type="url"
                       value={url}
                       onChange={(e) => handleGifChange(index, e.target.value)}
-                      placeholder={`GIF #${index + 1}`}
-                      style={{ flex: 1, marginRight: '8px' }}
+                      placeholder="https://example.com/your-gif.gif"
+                      className={`input ${errors.message ? 'error' : ''}`}
                     />
                     {gifUrls.length > 1 && (
                       <button type="button" onClick={() => removeGifField(index)}>✕</button>
                     )}
+                    <label className="user-label">GIF #{index + 1}</label>
                   </div>
                 ))}
+                <br />
                 <button type="button" onClick={addGifField}>Ajouter un GIF</button>
               </div>
-
-              <div className="form-group">
-                <label>Son (URL)</label>
+              <br />
+              <div className="input-group">
                 <input
                   type="url"
                   value={soundUrl}
                   onChange={(e) => setSoundUrl(e.target.value)}
                   placeholder="https://example.com/your-sound.mp3"
+                  className={`input ${errors.message ? 'error' : ''}`}
                 />
+                <label className="user-label">Son (URL)</label>
               </div>
-
+              <br />
               <button type="submit">Créer ma page</button>
             </form>
 
