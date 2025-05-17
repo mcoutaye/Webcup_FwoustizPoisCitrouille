@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './style/App.css';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function App() {
   const [name, setName] = useState('');
@@ -12,7 +14,6 @@ function App() {
   const [soundUrl, setSoundUrl] = useState('');
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
   const [isPublished, setIsPublished] = useState(false);
-  const [pageUrl, setPageUrl] = useState('');
   const [errors, setErrors] = useState({});
   const [blurAmount, setBlurAmount] = useState(5);
 
@@ -40,8 +41,6 @@ function App() {
     }
 
     setErrors({});
-    const uniqueId = Math.random().toString(36).substring(2, 9);
-    setPageUrl(`https://theend.page/${uniqueId}`);
     setIsPublished(true);
   };
 
@@ -56,7 +55,6 @@ function App() {
     setSoundUrl('');
     setBackgroundImageUrl('');
     setIsPublished(false);
-    setPageUrl('');
     setErrors({});
   };
 
@@ -96,6 +94,25 @@ function App() {
       default:
         return {};
     }
+  };
+
+  const downloadPDF = () => {
+    const page = document.querySelector('.final-page');
+    if (!page) return;
+
+    html2canvas(page, {
+      useCORS: true,
+      scale: 2,
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [canvas.width, canvas.height],
+      });
+      pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+      pdf.save('theend_page.pdf');
+    });
   };
 
   const getBackgroundStyle = () => ({
@@ -304,9 +321,7 @@ function App() {
               )}
             </div>
             <div className="share-section">
-              <p>Partagez votre page :</p>
-              <input type="text" value={pageUrl} readOnly />
-              <button onClick={() => navigator.clipboard.writeText(pageUrl)}>Copier le lien</button>
+              <button onClick={downloadPDF}>Télécharger en PDF</button>
               <button onClick={resetForm}>Créer une autre page</button>
             </div>
           </div>
