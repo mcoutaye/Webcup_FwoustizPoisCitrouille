@@ -8,7 +8,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background-color: #f9f9f9;
+  background-color: rgb(26, 115, 232, 0.05);
   color: #333;
 }
 
@@ -96,9 +96,30 @@ main {
   min-width: 250px;
 }
 
+.input-group > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.input-group > div input {
+  flex: 1;
+}
+
+.input-group > div button {
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  height: 100%;
+}
+
 .input {
   width: 100%;
-  border: 1.5px solid #9e9e9e;
+  border: 1.5px solid #1a73e8;
   border-radius: 1rem;
   background: transparent;
   padding: 1rem;
@@ -111,7 +132,7 @@ main {
 .input:valid {
   outline: none;
   border-color: #1a73e8;
-  background-color: #fff;
+  background-color: rgb(26, 115, 232, 0.01);
 }
 
 .user-label {
@@ -130,7 +151,7 @@ main {
   top: 0.1rem;
   left: 12px;
   font-size: 0.75rem;
-  background: #f9f9f9;
+  background: #edf5ff;
   padding: 0 4px;
   color: #1a73e8;
 }
@@ -140,7 +161,7 @@ select {
   padding: 12px;
   border-radius: 1rem;
   border: 1.5px solid #9e9e9e;
-  background-color: #fff;
+  background-color: rgb(26, 115, 232, 0.01);
   font-size: 1rem;
   color: #333;
   appearance: none;
@@ -166,7 +187,7 @@ select {
   width: 100%;
   border: 1.5px solid #9e9e9e;
   border-radius: 1rem;
-  background: transparent;
+  background: rgb(26, 115, 232, 0.01);
   padding: 1rem;
   font-size: 1rem;
   color: #000;
@@ -177,7 +198,7 @@ select {
 .select-input:valid {
   outline: none;
   border-color: #1a73e8;
-  background-color: #fff;
+  background-color: rgb(26, 115, 232, 0.01);
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23999' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
@@ -312,7 +333,7 @@ button {
 }
 
 button:hover {
-  background-color: #ff6b81;
+  background-color: #ff7d91;
 }
 
 /* Preview & Final Page */

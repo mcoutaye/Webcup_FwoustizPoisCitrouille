@@ -8,8 +8,8 @@ function App() {
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
   const [tone, setTone] = useState('dramatique');
-  const [bgColor, setBgColor] = useState('#000000');
-  const [textColor, setTextColor] = useState('#ffffff');
+  const [bgColor, setBgColor] = useState('#ffffff');
+  const [textColor, setTextColor] = useState('#000000');
   const [gifUrls, setGifUrls] = useState(['']);
   const [soundUrl, setSoundUrl] = useState('');
   const [backgroundImageUrl, setBackgroundImageUrl] = useState('');
@@ -49,8 +49,8 @@ function App() {
     setTitle('');
     setMessage('');
     setTone('dramatique');
-    setBgColor('#000000');
-    setTextColor('#ffffff');
+    setBgColor('#ffffff');
+    setTextColor('#000000');
     setGifUrls(['']);
     setSoundUrl('');
     setBackgroundImageUrl('');
