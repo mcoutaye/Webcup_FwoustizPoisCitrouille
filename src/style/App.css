@@ -68,6 +68,21 @@ body {
 .header-right {
   display: flex;
   align-items: center;
+  gap: 20px;
+}
+
+.hall-of-fame-link {
+  text-decoration: none;
+  background-color: #ffd700;
+  color: #000;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.hall-of-fame-link:hover {
+  background-color: #ffcc00;
 }
 
 .header-tagline {
@@ -151,7 +166,7 @@ main {
   top: 0.1rem;
   left: 12px;
   font-size: 0.75rem;
-  background: #edf5ff;
+  background: #c3c7cd;
   padding: 0 4px;
   color: #1a73e8;
 }
@@ -471,3 +486,4 @@ footer {
   overflow: visible;  /* très important */
   height: auto !important;  /* très important */
 }
+

@@ -1,0 +1,82 @@
+.hof-container {
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+}
+
+.hof-background-blur {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: var(--blur-filter);
+  z-index: 0;
+}
+
+.hof-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hof-message {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  white-space: pre-wrap; /* pour garder les sauts de ligne */
+}
+
+.hof-gif {
+  max-width: 150px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.hof-audio {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Styles selon le ton, avec des classes */
+.tone-dramatique {
+  font-family: Georgia, serif;
+  text-shadow: 0 0 10px rgba(255,0,0,0.7);
+}
+
+.tone-ironique {
+  font-family: "Courier New", monospace;
+  font-style: italic;
+}
+
+.tone-cringe {
+  font-family: "Comic Sans MS", cursive;
+  color: hotpink;
+}
+
+.tone-classe {
+  font-family: "Times New Roman", serif;
+  letter-spacing: 1px;
+}
+
+.tone-touchant {
+  font-family: Arial, sans-serif;
+  font-weight: lighter;
+}
+
+.tone-absurde {
+  font-family: Papyrus, fantasy;
+  transform: rotate(2deg);
+}
+
+.tone-passif-agressif {
+  font-family: Verdana, sans-serif;
+  text-decoration: underline wavy;
+}
+
+.tone-honnete {
+  font-family: Helvetica, sans-serif;
+}
